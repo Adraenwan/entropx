@@ -43,8 +43,12 @@ func main() {
 	fileSize := int(fileInfo.Size())
 	if *imgColumn == 0 {
 		n := 1
-		for n*2 < int(math.Sqrt(float64(fileSize))) {
+		sqrt := int(math.Sqrt(float64(fileSize)))
+		for n < sqrt {
 			n *= 2
+		}
+		if n > sqrt {
+			n = n / 2
 		}
 		*imgColumn = n
 	}
