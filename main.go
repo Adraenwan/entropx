@@ -6,8 +6,8 @@ import (
 	"image"
 	"image/png"
 	"io"
-	"os"
 	"math"
+	"os"
 )
 
 var Usage = func() {
