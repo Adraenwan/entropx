@@ -18,7 +18,7 @@ var Usage = func() {
 func main() {
 	imgColumn := flag.Int("col", 400, "image column number")
 	colorPalette := flag.String("palette", "bytecode", "color palette")
-	curveGenerator := flag.String("curve", "sweep", "visualization curve")
+	curveGenerator := flag.String("curve", "sweep", "visualization curve sweep|zigzag|zorder")
 
 	flag.Usage = Usage
 	flag.Parse()
