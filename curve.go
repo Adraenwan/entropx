@@ -38,7 +38,7 @@ func CurveSweep(out chan<- image.Point, column, row int) {
 func CurveZigzag(out chan<- image.Point, column, row int) {
 	x, y, adder := 0, 0, 0
 
-	for {
+	for y <= row {
 		out <- image.Point{x, y}
 
 		x += adder
