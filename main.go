@@ -17,7 +17,7 @@ var Usage = func() {
 }
 
 func main() {
-	imgColumn := flag.Int("col", 0, "image column number. 0 means square")
+	imgColumn := flag.Int("col", 0, "image column number. 0 means automatic")
 	colorPalette := flag.String("palette", "bytecode", "color palette")
 	curveGenerator := flag.String("curve", "sweep", "visualization curve sweep|zigzag|zorder")
 
@@ -43,7 +43,7 @@ func main() {
 	fileSize := int(fileInfo.Size())
 	if *imgColumn == 0 {
 		n := 1
-		for n < int(math.Sqrt(float64(fileSize))) {
+		for n*2 < int(math.Sqrt(float64(fileSize))) {
 			n *= 2
 		}
 		*imgColumn = n
