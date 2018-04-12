@@ -15,7 +15,7 @@ func Curve(name string, column, row int) (<-chan image.Point, bool) {
 	case "zigzag":
 		go CurveZigzag(out, column, row)
 
-	case "z-order":
+	case "zorder":
 		go CurveZOrder(out, column, row)
 
 	default:
