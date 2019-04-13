@@ -54,7 +54,7 @@ func main() {
 	}
 	//imgRow := 1 + int(fileSize) / *imgColumn
 	imgRow := 0
-	for imgRow*(*imgColumn) <= fileSize {
+	for imgRow*(*imgColumn) < fileSize {
 		imgRow += *imgColumn
 	}
 
@@ -99,7 +99,7 @@ func main() {
 		}
 	}
 
-	fileOut, err := os.OpenFile(flag.Args()[1], os.O_WRONLY|os.O_CREATE, 0644)
+	fileOut, err := os.OpenFile(flag.Args()[1], os.O_TRUNC|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		panic(err)
 	}
