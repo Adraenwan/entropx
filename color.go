@@ -11,6 +11,9 @@ func ColorConverter(name string, in <-chan byte) (<-chan color.RGBA, bool) {
 	case "bytecode":
 		go ColorByteCode(in, out)
 
+	case "rainbow":
+		go ColorRainbow(in, out)
+
 	default:
 		return nil, false
 	}
@@ -44,6 +47,28 @@ func ColorByteCode(in <-chan byte, out chan<- color.RGBA) {
 		default:
 			out <- color.RGBA{228, 26, 28, 255} // RED
 		}
+	}
+
+	close(out)
+}
+
+func ColorRainbow(in <-chan byte, out chan<- color.RGBA) {
+	m1 := float64(0.5)
+	m2 := float64(0.5)
+	m3 := float64(0.5)
+
+	const a1 = 0.25
+	const a2 = 0.005
+	const a3 = 0.001
+
+	for b := range in {
+		fb := float64(b)
+
+		m1 = a1*fb + (1 - a1)*m1
+		m2 = a2*fb + (1 - a2)*m2
+		m3 = a3*fb + (1 - a3)*m3
+
+		out <- color.RGBA{byte(m1*255), byte(m2*255), byte(m3*255), 255}
 	}
 
 	close(out)
